@@ -17,6 +17,11 @@ A program for encoding and decoding data using the ASCII85 algorithm. This comma
 └── tests/      # Unit tests
 ```
 
+## Requirements
+
+- C++14 compatible compiler
+- GTest for unit tests (C++14 or newer version)
+
 ## Compilation
 
 To compile the program, simply run:

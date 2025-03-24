@@ -16,14 +16,14 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libgtest-dev
+        sudo apt-get install -y g++-11 libgtest-dev
         cd /usr/src/gtest
-        sudo cmake .
+        sudo cmake -DCMAKE_CXX_STANDARD=14 .
         sudo make
         sudo cp lib/*.a /usr/lib
 
     - name: Build main program
-      run: make all
+      run: make all CXX=g++-11
 
     - name: Build and run tests
-      run: make run_tests 
+      run: make run_tests CXX=g++-11 
