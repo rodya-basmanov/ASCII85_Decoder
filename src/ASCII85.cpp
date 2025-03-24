@@ -1,6 +1,7 @@
 #include "../include/ASCII85.h"
 #include <sstream>
 #include <vector>
+#include <cstdint>
 
 // Implementation of ASCII85 encoder/decoder
 class ASCII85Impl {
