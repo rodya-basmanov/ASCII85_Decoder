@@ -13,7 +13,8 @@ A program for encoding and decoding data using the ASCII85 algorithm. This comma
 ├── include/    # Header files
 ├── obj/        # Object files
 ├── src/        # Source files
-└── test/       # Test scripts
+├── test/       # Functional test scripts
+└── tests/      # Unit tests
 ```
 
 ## Compilation
@@ -41,7 +42,7 @@ Examples:
 echo -n "Hello, World!" | ./bin/main
 
 # Decoding
-echo -n "87cURD_*#4DfTZ)+T" | ./bin/main -d
+echo -n "87cURD]i,\"Cht" | ./bin/main -d
 
 # Encoding a file
 cat input.bin | ./bin/main > encoded.txt
@@ -49,6 +50,59 @@ cat input.bin | ./bin/main > encoded.txt
 # Decoding a file
 cat encoded.txt | ./bin/main -d > decoded.bin
 ```
+
+## Testing
+
+### Installing GoogleTest
+
+Before running the tests, you need to install GoogleTest:
+
+```
+make install_gtest
+```
+
+Or manually:
+
+```
+sudo apt-get install libgtest-dev
+cd /usr/src/gtest
+sudo cmake .
+sudo make
+sudo cp lib/*.a /usr/lib
+```
+
+### Running Tests
+
+To build and run the unit tests:
+
+```
+make run_tests
+```
+
+Alternatively, you can run the script:
+
+```
+cd tests
+./run_tests.sh
+```
+
+### Tests Coverage
+
+The test suite covers:
+- Empty input handling
+- Basic string encoding/decoding
+- Special cases (zero bytes)
+- Partial groups
+- Whitespace handling 
+- Invalid input handling
+- Stream-based operations
+- Round-trip encoding and decoding
+
+## CI/CD
+
+The project uses GitHub Actions for Continuous Integration. On each push or pull request to main branches, the following actions are performed:
+- Building the project
+- Running all tests
 
 ## About ASCII85 Format
 
