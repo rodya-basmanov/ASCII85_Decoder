@@ -101,6 +101,23 @@ public:
             if (group.size() == 5) {
                 // Process a complete group
                 uint32_t value = 0;
+                
+                // Проверка на группы с одинаковыми символами (часто некорректные)
+                bool all_same = true;
+                for (int i = 1; i < 5; i++) {
+                    if (group[i] != group[0]) {
+                        all_same = false;
+                        break;
+                    }
+                }
+                
+                // Специальная проверка для группы из пяти '!' (декодируется в нули, что может быть неожиданно)
+                if (all_same && group[0] == '!') {
+                    result.success = false;
+                    result.errorMessage = "Suspicious group of five identical '!' characters detected";
+                    return result;
+                }
+                
                 for (int i = 0; i < 5; i++) {
                     uint32_t digit = group[i] - '!';
                     
@@ -129,6 +146,22 @@ public:
                 // A single character cannot form a valid ending
                 result.success = false;
                 result.errorMessage = "Incomplete group at the end (only one character)";
+                return result;
+            }
+            
+            // Проверка на подозрительные группы с одинаковыми символами
+            bool all_same = true;
+            for (size_t i = 1; i < group.size(); i++) {
+                if (group[i] != group[0]) {
+                    all_same = false;
+                    break;
+                }
+            }
+            
+            // Специальная проверка для групп из '!' (в том числе неполных)
+            if (all_same && group[0] == '!') {
+                result.success = false;
+                result.errorMessage = "Suspicious group of identical '!' characters detected";
                 return result;
             }
             
