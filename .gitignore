@@ -34,26 +34,6 @@
 # Ignore .cursor directory
 .cursor/
 
-# Generated binary files
-bin/
-obj/
-
-# IDE files
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Python files
-__pycache__/
-*.py[cod]
-*$py.class
-.env
-.venv
-env/
-venv/
-ENV/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -64,6 +44,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+build/
 develop-eggs/
 dist/
 downloads/
@@ -175,6 +156,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.env
+.venv
 env/
 venv/
 ENV/
@@ -211,3 +194,7 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+# Generated binary files
+bin/
+obj/
+

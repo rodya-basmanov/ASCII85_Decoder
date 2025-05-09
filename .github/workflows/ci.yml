@@ -25,5 +25,11 @@ jobs:
     - name: Build main program
       run: make all CXX=g++-11
 
-    - name: Build and run tests
+    - name: Build and run C++ tests
       run: make run_tests CXX=g++-11 
+
+    - name: Run Python tests
+      run: |
+        cd tests
+        chmod +x simple_test.py run_all_tests.py
+        ./run_all_tests.py 

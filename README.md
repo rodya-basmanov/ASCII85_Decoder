@@ -14,13 +14,14 @@ A program for encoding and decoding data using the ASCII85 algorithm. This comma
 ├── obj/        # Object files
 ├── src/        # Source files
 ├── test/       # Functional test scripts
-└── tests/      # Unit tests
+└── tests/      # Unit tests and Python tests
 ```
 
 ## Requirements
 
 - C++14 compatible compiler
-- GTest for unit tests (C++14 or newer version)
+- GTest for C++ unit tests (C++14 or newer version)
+- Python 3 for additional tests
 
 ## Compilation
 
@@ -60,7 +61,7 @@ cat encoded.txt | ./bin/main -d > decoded.bin
 
 ### Installing GoogleTest
 
-Before running the tests, you need to install GoogleTest:
+Before running the C++ unit tests, you need to install GoogleTest:
 
 ```
 make install_gtest
@@ -76,20 +77,36 @@ sudo make
 sudo cp lib/*.a /usr/lib
 ```
 
-### Running Tests
+### Running C++ Unit Tests
 
-To build and run the unit tests:
+To build and run the C++ unit tests:
 
 ```
 make run_tests
 ```
 
-Alternatively, you can run the script:
+### Running Python Tests
+
+The project includes Python tests that compare the ASCII85 implementation with the standard Base64 library and validate various edge cases.
+
+To run these tests:
 
 ```
 cd tests
-./run_tests.sh
+python3 run_all_tests.py
 ```
+
+The simple Python test file (simple_test.py) covers:
+- Empty input handling
+- Basic string encoding/decoding
+- Special cases (zero bytes)
+- Partial groups
+- Whitespace handling 
+- Invalid input handling
+- Stream-based operations
+- Round-trip encoding and decoding
+- Comparison with Base64 encoding
+- Performance benchmarks
 
 ### Tests Coverage
 
@@ -102,6 +119,8 @@ The test suite covers:
 - Invalid input handling
 - Stream-based operations
 - Round-trip encoding and decoding
+- Comparison with Base64 encoding
+- Performance benchmarks
 
 ## CI/CD
 
